@@ -22,4 +22,3 @@ jobs:
 
       - name: Run app check
         run: node -e "console.log('App starts successfully')"
-
