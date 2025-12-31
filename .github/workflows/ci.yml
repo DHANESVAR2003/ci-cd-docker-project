@@ -8,17 +8,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+  - name: Login to Docker Hub
+    uses: docker/login-action@v3
+    with:
+      username: ${{ dhanesvar_cicd }}
+      password: ${{ Github@123 }}
 
-      - name: Install dependencies
-        run: npm install
+  - name: Build Docker image
+    run: docker build -t ${{ dhanesvar_cicd }}/ci-cd-app .
 
-      - name: Run app check
-        run: node -e "console.log('App starts successfully')"
+  - name: Push Docker image
+    run: docker push ${{ dhanesvar_cicd }}/ci-cd-app
